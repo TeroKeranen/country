@@ -19,9 +19,40 @@ app.get("/", (req, res) => {
 });
 
 app.post("/maa", (req, res) => {
-  let maa = req.body.maanNimi;
+  // get selected country and store it in variable
+  const maa = req.body.maanNimi;
+  const countryInformationUrl = `https://restcountries.com/v3.1/name/${maa}`;
 
-  console.log(maa);
+  fetch(countryInformationUrl)
+    .then((res) => res.json())
+    .then((data) => {
+      let maanNimi, asukasluku, flagUrl, paakaupunki;
+
+      data.forEach((info) => {
+        // get currencies infos
+        const raha = info.currencies;
+        // take currencies currency code and store it into variable
+        const valuuttaKoodi = Object.keys(raha);
+        // get valuutta data from raha object
+        let valuuttaData = raha[valuuttaKoodi];
+
+        const valuutta = valuuttaData.name;
+        const valuuttaSymbol = valuuttaData.symbol;
+
+        // get country name
+        maanNimi = info.name.common;
+        asukasluku = info.population;
+        flagUrl = info.flags.png;
+        paakaupunki = info.capital;
+      });
+      res.render("index", {
+        maat: "",
+        maa: maanNimi,
+        asukasluku: asukasluku,
+        flagUrl: flagUrl,
+        paakaupunki: paakaupunki,
+      });
+    });
 });
 
 app.listen(3000, function () {

@@ -13,7 +13,13 @@ function getCountry(response) {
         // push values into maat array
         maat.push(maa.name.common);
       });
-      response.render("index", { maat: maat });
+      response.render("index", {
+        maat: maat,
+        maa: "",
+        asukasluku: "",
+        flagUrl: "",
+        paakaupunki: "",
+      });
     })
     .catch((err) => console.log(err));
 }
