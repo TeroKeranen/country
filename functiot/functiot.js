@@ -2,12 +2,12 @@
 
 function getCountry(
   response,
+  firstTouch,
   maanNimi,
   asukasluku,
   flagUrl,
   paakaupunki,
-  valuutta,
-  symboli
+  valuutta
 ) {
   // whole url data
   const url = "https://restcountries.com/v3.1/all";
@@ -25,21 +25,20 @@ function getCountry(
       const imageUrl = flagUrl;
       const capital = paakaupunki;
       const currency = valuutta;
-      const currencySymbol = symboli;
+      console.log(currency);
 
-      console.log(imageUrl);
       data.forEach((maa) => {
         // push values into maat array
         maat.push(maa.name.common);
       });
       response.render("index", {
-        maat: maat,
+        saapuminen: firstTouch,
+        maat: maat.sort(),
         maa: country,
         asukasluku: population,
         flagUrl: imageUrl,
         paakaupunki: capital,
         valuutta: currency,
-        symboli: currencySymbol,
       });
     })
 

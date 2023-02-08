@@ -1,23 +1,33 @@
 const { getCountry } = require("./functiot.js");
 
-function getCountryInformation(response, maa) {
+function getCountryInformation(response, maa, firstTouch) {
   const countryInformationUrl = `https://restcountries.com/v3.1/name/${maa}`;
 
   fetch(countryInformationUrl)
     .then((res) => res.json())
     .then((data) => {
-      let maanNimi, asukasluku, flagUrl, paakaupunki, valuutta, valuuttaSymbol;
+      let maanNimi, asukasluku, flagUrl, paakaupunki;
+
+      let valuutta = [];
+      let valuuttaSymbol = [];
 
       data.forEach((info) => {
         // get currencies infos
         const raha = info.currencies;
-        // take currencies currency code and store it into variable
-        const valuuttaKoodi = Object.keys(raha);
-        // get valuutta data from raha object
-        let valuuttaData = raha[valuuttaKoodi];
 
-        valuutta = valuuttaData.name;
-        valuuttaSymbol = valuuttaData.symbol;
+        // count how many currencies is inside raha variable
+        const numberOfCurrencies = Object.keys(raha).length;
+
+        // check if there is more than 1 currency
+        if (numberOfCurrencies === 1) {
+          valuutta = `${Object.values(raha).map(
+            (currency) => `${currency.name} (${currency.symbol})`
+          )}`;
+        } else if (numberOfCurrencies > 1) {
+          valuutta = Object.values(raha).map(
+            (currency) => `${currency.name} (${currency.symbol})`
+          );
+        }
 
         // get country name
         maanNimi = info.name.common;
@@ -28,12 +38,13 @@ function getCountryInformation(response, maa) {
 
       getCountry(
         response,
+        firstTouch,
         maanNimi,
         asukasluku,
         flagUrl,
         paakaupunki,
-        valuutta,
-        valuuttaSymbol
+        valuutta
+        // valuuttaSymbol
       );
     });
 }
