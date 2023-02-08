@@ -8,5 +8,16 @@
   </head>
   <body>
     <h1>tervetuloas</h1>
+
+    <form action="/maa" method="post">
+      <select name="maanNimi" id="maat">
+        <% for(let i = 0; i < maat.length; i++) { %>
+        <option value="<%= maat[i] %>"><%= maat[i] %></option>
+
+        <% } %>
+      </select>
+
+      <button type="submit">Hae tiedot</button>
+    </form>
   </body>
 </html>
