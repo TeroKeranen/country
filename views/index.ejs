@@ -7,24 +7,27 @@
     <title>homepage</title>
   </head>
   <body>
-    <h1>tervetuloas</h1>
+    <main>
+      <h1>tervetuloas</h1>
 
-    <form action="/maa" method="post">
-      <select name="maanNimi" id="maat">
-        <% for(let i = 0; i < maat.length; i++) { %>
-        <option value="<%= maat[i] %>"><%= maat[i] %></option>
+      <form action="/maa" method="post">
+        <select name="maanNimi" id="maat">
+          <% for(let i = 0; i < maat.length; i++) { %>
+          <option value="<%= maat[i] %>"><%= maat[i] %></option>
 
-        <% } %>
-      </select>
+          <% } %>
+        </select>
 
-      <button type="submit">Hae tiedot</button>
-    </form>
+        <button type="submit">Hae tiedot</button>
+      </form>
 
-    <div class="div">
-      <h1>maa : <%= maa %></h1>
-      <h1>asukasluku : <%= asukasluku %></h1>
-      <h1>lippu : <%= flagUrl %></h1>
-      <h1>pääkaupunki : <%= paakaupunki %></h1>
-    </div>
+      <div class="div">
+        <h1>maa : <%= maa %></h1>
+        <h1>pääkaupunki : <%= paakaupunki %></h1>
+        <h1>asukasluku : <%= asukasluku %></h1>
+        <h1>valuutta : <%= valuutta %> <%=symboli %></h1>
+        <h1><img src="<%= flagUrl %>" alt="" /></h1>
+      </div>
+    </main>
   </body>
 </html>
