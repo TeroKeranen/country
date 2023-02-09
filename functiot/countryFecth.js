@@ -9,7 +9,6 @@ function getCountryInformation(response, maa, firstTouch) {
       let maanNimi, asukasluku, flagUrl, paakaupunki;
 
       let valuutta = [];
-      let valuuttaSymbol = [];
 
       data.forEach((info) => {
         // get currencies infos

@@ -25,7 +25,6 @@ function getCountry(
       const imageUrl = flagUrl;
       const capital = paakaupunki;
       const currency = valuutta;
-      console.log(currency);
 
       data.forEach((maa) => {
         // push values into maat array
