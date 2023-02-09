@@ -5,37 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <title>homepage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <title>Countries</title>
   </head>
   <body>
     <main>
       <section class="welcome">
-        <h1>Tervetuloa</h1>
+        <h1>Etsin maan tiedot</h1>
       </section>
 
-      <form action="/maa" method="post">
-        <select name="maanNimi" id="maat">
-          <% for(let i = 0; i < maat.length; i++) { %>
-          <option value="<%= maat[i] %>"><%= maat[i] %></option>
+      <div class="form-container">
+        <form action="/maa" method="post">
+          <select name="maanNimi" id="maat">
+            <% for(let i = 0; i < maat.length; i++) { %>
+            <option value="<%= maat[i] %>"><%= maat[i] %></option>
 
-          <% } %>
-        </select>
+            <% } %>
+          </select>
 
-        <button type="submit">Hae tiedot</button>
-      </form>
-      <% if (!saapuminen) { %>
-      <div class="landing-container">
-        <h1>
-          Hei! valitse maa taulukosta niin saat kyseisen maan tiedot näkyviin
-        </h1>
+          <button type="submit">Hae tiedot</button>
+        </form>
       </div>
+      <% if (!saapuminen) { %>
+      <dip class="landing-text">
+        <h2>
+          Hei! valitse maa taulukosta niin saat kyseisen maan tiedot näkyviin
+        </h2>
+      </dip
       <% } else { %>
-      <div class="div">
-        <h1>maa : <%= maa %></h1>
-        <h1>pääkaupunki : <%= paakaupunki %></h1>
-        <h1>asukasluku : <%= asukasluku %></h1>
-        <h1>valuutta : <%= valuutta %></h1>
-        <h1><img src="<%= flagUrl %>" alt="" /></h1>
+      <div class="country-infos">
+       
+          
+        <p>Maa : <%= maa %></p>
+        <div class="underline"></div>
+        <p>Pääkaupunki : <%= paakaupunki %></p>
+        <div class="underline"></div>
+        <p>Asukasluku : <%= asukasluku %> henkilöä</p>
+        <div class="underline"></div>
+        <p>Valuutta : <%= valuutta %></p>
+        <div class="underline"></div>
+        
+        <img src="<%= flagUrl %>" alt="" />
       </div>
       <% } %>
     </main>
